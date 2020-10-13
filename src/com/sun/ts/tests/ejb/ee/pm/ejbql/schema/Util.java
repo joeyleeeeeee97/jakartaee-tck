@@ -21,12 +21,8 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 
 import java.util.*;
-import jakarta.ejb.*;
-import javax.rmi.*;
 
 public class Util {
   private static boolean debug = false;
@@ -56,23 +52,19 @@ public class Util {
       Iterator iterator = c.iterator();
       while (iterator.hasNext()) {
         if (refType == Schema.CUSTOMERREF) {
-          cref = (Customer) PortableRemoteObject.narrow(iterator.next(),
-              Customer.class);
+          cref = (Customer) iterator.next();
           cpks = cpks + cref.getId();
           cpks2[k] = cref.getId();
         } else if (refType == Schema.ORDERREF) {
-          oref = (Order) PortableRemoteObject.narrow(iterator.next(),
-              Order.class);
+          oref = (Order) iterator.next();
           cpks = cpks + oref.getId();
           cpks2[k] = oref.getId();
         } else if (refType == Schema.ALIASREF) {
-          aref = (Alias) PortableRemoteObject.narrow(iterator.next(),
-              Alias.class);
+          aref = (Alias) iterator.next();
           cpks = cpks + aref.getId();
           cpks2[k] = aref.getId();
         } else {
-          pref = (Product) PortableRemoteObject.narrow(iterator.next(),
-              Product.class);
+          pref = (Product) iterator.next();
           cpks = cpks + pref.getId();
           cpks2[k] = pref.getId();
         }
@@ -94,17 +86,13 @@ public class Util {
       iterator = c.iterator();
       while (iterator.hasNext()) {
         if (refType == Schema.CUSTOMERREF)
-          cref = (Customer) PortableRemoteObject.narrow(iterator.next(),
-              Customer.class);
+          cref = (Customer) iterator.next();
         else if (refType == Schema.ORDERREF)
-          oref = (Order) PortableRemoteObject.narrow(iterator.next(),
-              Order.class);
+          oref = (Order) iterator.next();
         else if (refType == Schema.ALIASREF)
-          aref = (Alias) PortableRemoteObject.narrow(iterator.next(),
-              Alias.class);
+          aref = (Alias) iterator.next();
         else
-          pref = (Product) PortableRemoteObject.narrow(iterator.next(),
-              Product.class);
+          pref = (Product) iterator.next();
         foundPK = false;
         for (int j = 0; j < pks.length; j++) {
           if (refType == Schema.CUSTOMERREF) {

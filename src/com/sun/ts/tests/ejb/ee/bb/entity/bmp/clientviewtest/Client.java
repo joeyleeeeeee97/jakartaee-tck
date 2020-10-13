@@ -21,14 +21,11 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.clientviewtest;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import java.io.*;
 import java.util.*;
 import jakarta.ejb.*;
-import jakarta.transaction.*;
-import javax.rmi.PortableRemoteObject;
+
 import java.rmi.*;
 import com.sun.ts.tests.common.dao.DAOFactory;
 
@@ -1137,8 +1134,7 @@ public class Client extends EETest {
         pass = false;
       } else {
         Iterator i = c.iterator();
-        beanRef2 = (TestBean) PortableRemoteObject.narrow(i.next(),
-            TestBean.class);
+        beanRef2 = (TestBean) i.next();
         TestUtil.logMsg("Check if we found the correct EJB reference");
         if (beanRef[2].isIdentical(beanRef2)) {
           TestUtil.logMsg("findByName returned correct reference");
@@ -1204,8 +1200,7 @@ public class Client extends EETest {
         pass = false;
       } else {
         Iterator i = c.iterator();
-        beanRef2 = (TestBean) PortableRemoteObject.narrow(i.next(),
-            TestBean.class);
+        beanRef2 = (TestBean) i.next();
         TestUtil.logMsg("Check if we found the correct EJB reference");
         if (beanRef[2].isIdentical(beanRef2)) {
           TestUtil.logMsg("findByPrice returned correct reference");
@@ -1269,8 +1264,7 @@ public class Client extends EETest {
       Iterator i = c.iterator();
       int j = 0;
       while (i.hasNext())
-        beanRef2[j++] = (TestBean) PortableRemoteObject.narrow(i.next(),
-            TestBean.class);
+        beanRef2[j++] = (TestBean) i.next();
       if (c.size() != 3) {
         TestUtil.logErr("findWithinPriceRange returned " + c.size()
             + " references, expected 3 references");
@@ -1359,8 +1353,7 @@ public class Client extends EETest {
       Iterator i = c.iterator();
       int j = 0;
       while (i.hasNext())
-        beanRef2[j++] = (TestBean) PortableRemoteObject.narrow(i.next(),
-            TestBean.class);
+        beanRef2[j++] = (TestBean) i.next();
       if (c.size() != 3) {
         TestUtil.logErr("findWithinPrimaryKeyRange returned " + c.size()
             + " references, expected 3 references");

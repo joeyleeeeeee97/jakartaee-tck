@@ -21,13 +21,9 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.tx;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import java.io.*;
 import java.util.*;
-import jakarta.ejb.*;
-import javax.rmi.*;
 
 import com.sun.javatest.Status;
 
@@ -344,8 +340,7 @@ public class Client extends EETest {
         Iterator i1 = c1.iterator();
         while (i1.hasNext()) {
           Object o = i1.next();
-          TxCommonBean tRef = (TxCommonBean) PortableRemoteObject.narrow(o,
-              TxCommonBean.class);
+          TxCommonBean tRef = (TxCommonBean) o;
           for (int l = 0; l < c1.size(); l++)
             tRef.remove();
         }

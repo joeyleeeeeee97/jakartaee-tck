@@ -23,19 +23,13 @@ package com.sun.ts.tests.rmiiiop.ee.standalone;
 import com.sun.ts.tests.rmiiiop.ee.marshaltests.*;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
 
 import java.util.*;
-import java.rmi.*;
-import jakarta.ejb.*;
-import javax.rmi.*;
-import javax.rmi.CORBA.*;
 import java.io.*;
 import java.net.*;
 import org.omg.CORBA.ORB;
-import org.omg.CORBA.Object;
 
 public class Client extends ServiceEETest implements Serializable {
   private Properties testProps = null;
@@ -102,8 +96,7 @@ public class Client extends ServiceEETest implements Serializable {
       MyUtil.logMsg("Convert stringified IOR to a CORBA object");
       org.omg.CORBA.Object obj = orb.string_to_object(ior);
       MyUtil.logMsg("Narrow CORBA object to get object reference");
-      testsRef = (RMIIIOPTests) PortableRemoteObject.narrow(obj,
-          RMIIIOPTests.class);
+      testsRef = (RMIIIOPTests) obj;
     } catch (Exception e) {
       MyUtil.logErr(
           "FATAL-ERROR: Could not create ORB via [ORB.init()] or could not");

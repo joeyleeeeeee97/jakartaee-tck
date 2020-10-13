@@ -21,12 +21,8 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.schema;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-import com.sun.ts.lib.harness.*;
 
 import java.util.*;
-import jakarta.ejb.*;
-import javax.rmi.*;
 
 public class Schema {
   public static final int CUSTOMERREF = 1;
@@ -173,8 +169,7 @@ public class Schema {
       Collection col = customerHome.findAllCustomers();
       Iterator i = col.iterator();
       while (i.hasNext()) {
-        Customer cref = (Customer) PortableRemoteObject.narrow(i.next(),
-            Customer.class);
+        Customer cref = (Customer) i.next();
         try {
           cref.remove();
         } catch (Exception e) {
@@ -184,8 +179,7 @@ public class Schema {
       col = productHome.findAllProducts();
       i = col.iterator();
       while (i.hasNext()) {
-        Product pref = (Product) PortableRemoteObject.narrow(i.next(),
-            Product.class);
+        Product pref = (Product) i.next();
         try {
           pref.remove();
         } catch (Exception e) {
@@ -195,7 +189,7 @@ public class Schema {
       col = orderHome.findAllOrders();
       i = col.iterator();
       while (i.hasNext()) {
-        Order oref = (Order) PortableRemoteObject.narrow(i.next(), Order.class);
+        Order oref = (Order) i.next();
         try {
           oref.remove();
         } catch (Exception e) {
@@ -205,7 +199,7 @@ public class Schema {
       col = aliasHome.findAllAliases();
       i = col.iterator();
       while (i.hasNext()) {
-        Alias aref = (Alias) PortableRemoteObject.narrow(i.next(), Alias.class);
+        Alias aref = (Alias) i.next();
         try {
           aref.remove();
         } catch (Exception e) {

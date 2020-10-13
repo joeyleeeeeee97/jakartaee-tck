@@ -19,21 +19,16 @@
 
 package org.omg.stub.com.sun.ts.tests.rmiiiop.ee.objecttests;
 
-import java.io.Serializable;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.UnexpectedException;
 import java.util.Properties;
 import javax.rmi.CORBA.Stub;
 import javax.rmi.CORBA.Util;
-import javax.rmi.PortableRemoteObject;
-import org.omg.CORBA.ORB;
+
 import org.omg.CORBA.SystemException;
 import org.omg.CORBA.portable.ApplicationException;
-import org.omg.CORBA.portable.InputStream;
 import org.omg.CORBA.portable.OutputStream;
 import org.omg.CORBA.portable.RemarshalException;
-import org.omg.CORBA.portable.ResponseHandler;
 import org.omg.CORBA.portable.ServantObject;
 
 import com.sun.ts.tests.rmiiiop.ee.objecttests.*;
@@ -211,8 +206,7 @@ public class _HelloRMIIIOPObjectIntf_Stub extends Stub
           OutputStream out = _request("returnEjbHome", true);
           Util.writeRemoteObject(out, arg0);
           in = _invoke(out);
-          return (TestBeanHome) PortableRemoteObject.narrow(in.read_Object(),
-              TestBeanHome.class);
+          return (TestBeanHome) in.read_Object();
         } catch (ApplicationException ex) {
           in = ex.getInputStream();
           String id = in.read_string();
@@ -253,8 +247,7 @@ public class _HelloRMIIIOPObjectIntf_Stub extends Stub
           OutputStream out = _request("returnEjbObject", true);
           Util.writeRemoteObject(out, arg0);
           in = _invoke(out);
-          return (TestBean) PortableRemoteObject.narrow(in.read_Object(),
-              TestBean.class);
+          return (TestBean) in.read_Object();
         } catch (ApplicationException ex) {
           in = ex.getInputStream();
           String id = in.read_string();

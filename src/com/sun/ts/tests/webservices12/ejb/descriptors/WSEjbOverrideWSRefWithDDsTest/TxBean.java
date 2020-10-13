@@ -35,8 +35,7 @@ public class TxBean implements SessionBean {
     try {
       javax.naming.InitialContext ctx = new javax.naming.InitialContext();
       o = ctx.lookup("java:comp/env/ejb/wschokebean");
-      home = (ChokeHome) javax.rmi.PortableRemoteObject.narrow(o,
-          ChokeHome.class);
+      home = (ChokeHome) o;
       choke = home.create();
     } catch (Exception e) {
       System.out.println("*** TxBean.ejbCreate: failed to find choke");
@@ -48,8 +47,7 @@ public class TxBean implements SessionBean {
     try {
       javax.naming.InitialContext ctx = new javax.naming.InitialContext();
       o = ctx.lookup("java:comp/env/ejb/wschokebean");
-      home = (ChokeHome) javax.rmi.PortableRemoteObject.narrow(o,
-          ChokeHome.class);
+      home = (ChokeHome) o;
       choke = home.create();
     } catch (Exception e) {
       System.out.println("*** TxBean.ejbActivate: failed to find choke");

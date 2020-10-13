@@ -19,13 +19,11 @@
 
 package com.sun.ts.tests.rmiiiop.ee.objecttests;
 
-import java.io.Serializable;
 import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.util.Properties;
 import javax.rmi.CORBA.Tie;
 import javax.rmi.CORBA.Util;
-import javax.rmi.PortableRemoteObject;
+
 import org.omg.CORBA.BAD_OPERATION;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.SystemException;
@@ -99,8 +97,7 @@ public class _HelloRMIIIOPObjectImpl_Tie extends Servant implements Tie {
         }
       case 11:
         if (method.equals("passEjbHome")) {
-          TestBeanHome arg0 = (TestBeanHome) PortableRemoteObject
-              .narrow(in.read_Object(), TestBeanHome.class);
+          TestBeanHome arg0 = (TestBeanHome) in.read_Object();
           boolean result = target.passEjbHome(arg0);
           OutputStream out = reply.createReply();
           out.write_boolean(result);
@@ -108,15 +105,13 @@ public class _HelloRMIIIOPObjectImpl_Tie extends Servant implements Tie {
         }
       case 13:
         if (method.equals("passEjbObject")) {
-          TestBean arg0 = (TestBean) PortableRemoteObject
-              .narrow(in.read_Object(), TestBean.class);
+          TestBean arg0 = (TestBean) in.read_Object();
           boolean result = target.passEjbObject(arg0);
           OutputStream out = reply.createReply();
           out.write_boolean(result);
           return out;
         } else if (method.equals("returnEjbHome")) {
-          TestBeanHome arg0 = (TestBeanHome) PortableRemoteObject
-              .narrow(in.read_Object(), TestBeanHome.class);
+          TestBeanHome arg0 = (TestBeanHome) in.read_Object();
           TestBeanHome result = target.returnEjbHome(arg0);
           OutputStream out = reply.createReply();
           Util.writeRemoteObject(out, result);
@@ -131,8 +126,7 @@ public class _HelloRMIIIOPObjectImpl_Tie extends Servant implements Tie {
         }
       case 15:
         if (method.equals("returnEjbObject")) {
-          TestBean arg0 = (TestBean) PortableRemoteObject
-              .narrow(in.read_Object(), TestBean.class);
+          TestBean arg0 = (TestBean) in.read_Object();
           TestBean result = target.returnEjbObject(arg0);
           OutputStream out = reply.createReply();
           Util.writeRemoteObject(out, result);

@@ -26,8 +26,6 @@ import com.sun.ts.lib.util.TestUtil;
 
 import com.sun.javatest.Status;
 
-import javax.rmi.PortableRemoteObject;
-
 import javax.naming.InitialContext;
 
 import jakarta.xml.ws.Service;
@@ -47,12 +45,10 @@ public class Client extends ServiceEETest {
           .lookup("java:comp/env/service/wsinterfacetest");
 
       Object ret = svc.getPort(InterfaceTest1.class);
-      port1 = (InterfaceTest1) PortableRemoteObject.narrow(ret,
-          InterfaceTest1.class);
+      port1 = (InterfaceTest1) ret;
 
       ret = svc.getPort(InterfaceTest2.class);
-      port2 = (InterfaceTest2) PortableRemoteObject.narrow(ret,
-          InterfaceTest2.class);
+      port2 = (InterfaceTest2) ret;
 
     } catch (Throwable t) {
       t.printStackTrace();

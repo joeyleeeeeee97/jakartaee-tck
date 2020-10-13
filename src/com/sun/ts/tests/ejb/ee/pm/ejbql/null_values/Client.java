@@ -21,17 +21,11 @@
 package com.sun.ts.tests.ejb.ee.pm.ejbql.null_values;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 import com.sun.ts.tests.ejb.ee.pm.ejbql.schema.*;
 
-import java.io.*;
 import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import javax.rmi.PortableRemoteObject;
-import java.rmi.*;
 
 import com.sun.javatest.Status;
 
@@ -1109,8 +1103,7 @@ public class Client extends EETest {
             continue;
           }
           TestUtil.logTrace("Check collection for expected references");
-          Customer cRef = (Customer) PortableRemoteObject.narrow(o,
-              Customer.class);
+          Customer cRef = (Customer) o;
           for (int l = 0; l < 5; l++) {
             if (expectedPKs[l].equals(cRef.getId())) {
               foundPK++;

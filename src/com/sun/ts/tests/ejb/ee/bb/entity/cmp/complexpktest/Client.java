@@ -21,15 +21,10 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp.complexpktest;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import java.io.*;
 import java.util.*;
 import jakarta.ejb.*;
-import jakarta.transaction.*;
-import javax.rmi.PortableRemoteObject;
-import java.rmi.*;
 
 import com.sun.javatest.Status;
 
@@ -178,8 +173,7 @@ public class Client extends EETest {
       Iterator i = c.iterator();
       int j = 0;
       while (i.hasNext())
-        testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(),
-            TestBean.class);
+        testRef[j++] = (TestBean) i.next();
       if (c.size() != 2) {
         TestUtil.logErr("findByName returned " + c.size()
             + " references, expected 2 references");
@@ -268,8 +262,7 @@ public class Client extends EETest {
       Iterator i = c.iterator();
       int j = 0;
       while (i.hasNext())
-        testRef[j++] = (TestBean) PortableRemoteObject.narrow(i.next(),
-            TestBean.class);
+        testRef[j++] = (TestBean) i.next();
 
       if (c.size() != 3) {
         TestUtil.logErr("findById returned " + c.size()
@@ -365,8 +358,7 @@ public class Client extends EETest {
       } else {
         TestUtil.logMsg("Check if we found the correct EJB reference");
         Iterator i = c.iterator();
-        testRef = (TestBean) PortableRemoteObject.narrow(i.next(),
-            TestBean.class);
+        testRef = (TestBean) i.next();
         if (beanRef[1].isIdentical(testRef)) {
           TestUtil.logMsg("findByPrice returned correct reference");
           pass = true;

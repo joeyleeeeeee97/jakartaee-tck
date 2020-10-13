@@ -21,12 +21,9 @@
 package com.sun.ts.tests.ejb.ee.pm.selfXself;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 import java.util.*;
-import jakarta.ejb.*;
-import javax.rmi.*;
 
 import com.sun.javatest.Status;
 
@@ -305,8 +302,7 @@ public class Client extends EETest {
       Collection col = employeeHome.findAllEmployees();
       Iterator i = col.iterator();
       while (i.hasNext()) {
-        Employee eref = (Employee) PortableRemoteObject.narrow(i.next(),
-            Employee.class);
+        Employee eref = (Employee) i.next();
         try {
           eref.remove();
         } catch (Exception e) {
@@ -317,8 +313,7 @@ public class Client extends EETest {
       col = deptHome.findAllDepartments();
       i = col.iterator();
       while (i.hasNext()) {
-        Department dref = (Department) PortableRemoteObject.narrow(i.next(),
-            Department.class);
+        Department dref = (Department) i.next();
         try {
           dref.remove();
         } catch (Exception e) {

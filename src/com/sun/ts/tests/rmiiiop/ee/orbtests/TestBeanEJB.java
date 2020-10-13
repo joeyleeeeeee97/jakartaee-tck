@@ -21,15 +21,10 @@
 package com.sun.ts.tests.rmiiiop.ee.orbtests;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 
 import java.util.*;
 import jakarta.ejb.*;
-import java.rmi.*;
-import javax.rmi.PortableRemoteObject;
-import javax.rmi.CORBA.Util;
 import org.omg.CORBA.ORB;
-import org.omg.CORBA.Object;
 
 public class TestBeanEJB implements SessionBean {
   private static final String orbLookup = "java:comp/ORB";
@@ -105,8 +100,7 @@ public class TestBeanEJB implements SessionBean {
         obj = orb.string_to_object(ior);
         TestUtil
             .logMsg("Narrow CORBA object to interface HelloRMIIIOPObjectIntf");
-        rmiiiopRef = (HelloRMIIIOPObjectIntf) PortableRemoteObject.narrow(obj,
-            HelloRMIIIOPObjectIntf.class);
+        rmiiiopRef = (HelloRMIIIOPObjectIntf) obj;
         TestUtil
             .logMsg("Call hello method on interface HelloRMIIIOPObjectIntf");
         String hello = rmiiiopRef.hello();
@@ -151,8 +145,7 @@ public class TestBeanEJB implements SessionBean {
         obj = orb.string_to_object(ior);
         TestUtil
             .logMsg("Narrow CORBA object to interface HelloRMIIIOPObjectIntf");
-        rmiiiopRef = (HelloRMIIIOPObjectIntf) PortableRemoteObject.narrow(obj,
-            HelloRMIIIOPObjectIntf.class);
+        rmiiiopRef = (HelloRMIIIOPObjectIntf) obj;
         TestUtil
             .logMsg("Call hello method on interface HelloRMIIIOPObjectIntf");
         String hello = rmiiiopRef.hello();

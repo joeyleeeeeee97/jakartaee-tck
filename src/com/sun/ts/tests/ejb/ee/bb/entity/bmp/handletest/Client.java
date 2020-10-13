@@ -21,14 +21,12 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.bmp.handletest;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
 import java.io.*;
 import java.util.*;
 import jakarta.ejb.*;
-import jakarta.transaction.*;
-import javax.rmi.PortableRemoteObject;
+
 import java.rmi.*;
 import com.sun.ts.tests.common.dao.DAOFactory;
 import com.sun.ts.tests.ejb.ee.bb.common.EJBHandleObjectInputStream;
@@ -160,8 +158,7 @@ public class Client extends EETest {
 
       logMsg("create object reference from deserialized handle");
       EJBObject ejbObject = deserializedHandle.getEJBObject();
-      TestBean beanRef2 = (TestBean) PortableRemoteObject.narrow(ejbObject,
-          TestBean.class);
+      TestBean beanRef2 = (TestBean) ejbObject;
 
       if (!beanRef.isIdentical(beanRef2)) {
         logErr("bean references not equal - unexpected");
@@ -244,8 +241,7 @@ public class Client extends EETest {
       try {
         logMsg("create object reference from deserialized handle");
         EJBObject ejbObject = deserializedHandle.getEJBObject();
-        TestBean beanRef2 = (TestBean) PortableRemoteObject.narrow(ejbObject,
-            TestBean.class);
+        TestBean beanRef2 = (TestBean) ejbObject;
         logMsg("ping object via deserialized object reference");
 
         logMsg("attempt to ping object reference");
@@ -338,8 +334,7 @@ public class Client extends EETest {
       HomeHandle deserializedHandle = (HomeHandle) is.readObject();
 
       logMsg("getEJBHome from HomeHandle");
-      TestBeanHome beanHome2 = (TestBeanHome) PortableRemoteObject
-          .narrow(deserializedHandle.getEJBHome(), TestBeanHome.class);
+      TestBeanHome beanHome2 = (TestBeanHome) deserializedHandle.getEJBHome();
 
       // create EJB instance
       logMsg("Create EJB instance from deserialized home handle");

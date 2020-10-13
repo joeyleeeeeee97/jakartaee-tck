@@ -28,7 +28,6 @@ import jakarta.ejb.SessionContext;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.rmi.PortableRemoteObject;
 
 public class TwoTestBean implements SessionBean {
   public static final String TWO_LOCAL_SHORT = "ejb/twolocal";
@@ -172,8 +171,7 @@ public class TwoTestBean implements SessionBean {
     try {
       Context ic = new InitialContext();
       Object obj = ic.lookup(TWO_REMOTE);
-      twoRemoteHome = (TwoRemoteHome) PortableRemoteObject.narrow(obj,
-          TwoRemoteHome.class);
+      twoRemoteHome = (TwoRemoteHome) obj;
       twoRemote = twoRemoteHome.create();
     } catch (NamingException e) {
       throw new TestFailedException(e);

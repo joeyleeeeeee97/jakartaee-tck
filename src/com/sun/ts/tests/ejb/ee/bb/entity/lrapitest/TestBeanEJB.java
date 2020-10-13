@@ -21,12 +21,9 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.lrapitest;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 
 import java.util.*;
 import jakarta.ejb.*;
-import java.rmi.*;
-import javax.rmi.PortableRemoteObject;
 
 public class TestBeanEJB implements SessionBean {
   private SessionContext sctx = null;
@@ -730,7 +727,7 @@ public class TestBeanEJB implements SessionBean {
       aRef = createA("1", "a1", 1);
       aLocalRef = createALocal("2", "a2", 2);
       TestUtil.logMsg("call method to return a remote ref");
-      A aRef1 = (A) PortableRemoteObject.narrow(aRef.getRemoteRef(), A.class);
+      A aRef1 = (A) aRef.getRemoteRef();
       TestUtil.logMsg("call business method on remote ref returned");
       String whoami = aRef1.whoAmIRemote();
       if (!whoami.equals("Remote-1-a1-1")) {

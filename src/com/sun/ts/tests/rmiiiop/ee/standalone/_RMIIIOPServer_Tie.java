@@ -25,11 +25,10 @@ import com.sun.ts.tests.rmiiiop.ee.marshaltests.Multi;
 import com.sun.ts.tests.rmiiiop.ee.marshaltests.UserException;
 import java.io.Serializable;
 import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.util.Date;
 import javax.rmi.CORBA.Tie;
 import javax.rmi.CORBA.Util;
-import javax.rmi.PortableRemoteObject;
+
 import org.omg.CORBA.BAD_OPERATION;
 import org.omg.CORBA.ORB;
 import org.omg.CORBA.SystemException;
@@ -176,8 +175,7 @@ public class _RMIIIOPServer_Tie extends Servant implements Tie {
           out.write_value(cast_array(result), int[].class);
           return out;
         } else if (method.equals("pass_verify_stub")) {
-          CallBackInterface arg0 = (CallBackInterface) PortableRemoteObject
-              .narrow(in.read_Object(), CallBackInterface.class);
+          CallBackInterface arg0 = (CallBackInterface) in.read_Object();
           int result = target.pass_verify_stub(arg0);
           OutputStream out = reply.createReply();
           out.write_long(result);
@@ -293,8 +291,7 @@ public class _RMIIIOPServer_Tie extends Servant implements Tie {
           out.write_value(cast_array(result), Object[].class);
           return out;
         } else if (method.equals("pass_a_remote_interface")) {
-          CallBackInterface arg0 = (CallBackInterface) PortableRemoteObject
-              .narrow(in.read_Object(), CallBackInterface.class);
+          CallBackInterface arg0 = (CallBackInterface) in.read_Object();
           int result = target.pass_a_remote_interface(arg0);
           OutputStream out = reply.createReply();
           out.write_long(result);

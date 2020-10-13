@@ -25,16 +25,11 @@ import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 import com.sun.javatest.Status;
 
-import java.io.*;
 import java.net.*;
 import java.util.*;
-import jakarta.ejb.*;
 import javax.rmi.PortableRemoteObject;
-import javax.rmi.CORBA.*;
-import java.rmi.*;
+
 import org.omg.CORBA.ORB;
-import org.omg.CORBA.Object;
-import org.omg.PortableServer.POA;
 import org.omg.PortableServer.POAHelper;
 
 public class Client extends EETest {
@@ -186,8 +181,7 @@ public class Client extends EETest {
       obj = orb.string_to_object(ior);
       TestUtil.logMsg(
           "Narrow the CORBA object to interface HelloRMIIIOPObjectIntf");
-      rmiiiopRef = (HelloRMIIIOPObjectIntf) PortableRemoteObject.narrow(obj,
-          HelloRMIIIOPObjectIntf.class);
+      rmiiiopRef = (HelloRMIIIOPObjectIntf) obj;
       TestUtil.logMsg("Call hello method on interface HelloRMIIIOPObjectIntf");
       String hello = rmiiiopRef.hello();
       TestUtil.logMsg("Verify the method call");

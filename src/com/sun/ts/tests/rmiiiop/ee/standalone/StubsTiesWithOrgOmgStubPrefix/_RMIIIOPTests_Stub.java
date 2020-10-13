@@ -22,22 +22,17 @@ package org.omg.stub.com.sun.ts.tests.rmiiiop.ee.standalone;
 import com.sun.ts.tests.rmiiiop.ee.marshaltests.Graph;
 import com.sun.ts.tests.rmiiiop.ee.marshaltests.IDLStruct;
 import com.sun.ts.tests.rmiiiop.ee.marshaltests.Multi;
-import com.sun.ts.tests.rmiiiop.ee.marshaltests.UserException;
+
 import java.io.Serializable;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.rmi.UnexpectedException;
 import java.util.Date;
 import javax.rmi.CORBA.Stub;
 import javax.rmi.CORBA.Util;
-import javax.rmi.PortableRemoteObject;
-import org.omg.CORBA.ORB;
+
 import org.omg.CORBA.SystemException;
 import org.omg.CORBA.portable.ApplicationException;
-import org.omg.CORBA.portable.InputStream;
 import org.omg.CORBA.portable.OutputStream;
 import org.omg.CORBA.portable.RemarshalException;
-import org.omg.CORBA.portable.ResponseHandler;
 import org.omg.CORBA.portable.ServantObject;
 
 import com.sun.ts.tests.rmiiiop.ee.standalone.*;
@@ -1060,8 +1055,7 @@ public class _RMIIIOPTests_Stub extends Stub implements RMIIIOPTests {
         try {
           OutputStream out = _request("return_a_remote_interface", true);
           in = _invoke(out);
-          return (CallBackInterface) PortableRemoteObject
-              .narrow(in.read_Object(), CallBackInterface.class);
+          return (CallBackInterface) in.read_Object();
         } catch (ApplicationException ex) {
           in = ex.getInputStream();
           String $_id = in.read_string();
@@ -1226,8 +1220,7 @@ public class _RMIIIOPTests_Stub extends Stub implements RMIIIOPTests {
         try {
           OutputStream out = _request("return_verify_stub", true);
           in = _invoke(out);
-          return (CallBackInterface) PortableRemoteObject
-              .narrow(in.read_Object(), CallBackInterface.class);
+          return (CallBackInterface) in.read_Object();
         } catch (ApplicationException ex) {
           in = ex.getInputStream();
           String $_id = in.read_string();

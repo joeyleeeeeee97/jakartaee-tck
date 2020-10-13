@@ -21,21 +21,14 @@
 package com.sun.ts.tests.rmiiiop.ee.orbtests;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
-
-import com.sun.ts.tests.rmiiiop.ee.orbtests.*;
 
 import java.io.*;
-import java.sql.*;
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.util.*;
-import jakarta.ejb.*;
-import java.rmi.*;
-import javax.rmi.PortableRemoteObject;
-import javax.rmi.CORBA.Util;
+
 import org.omg.CORBA.ORB;
-import org.omg.CORBA.Object;
 
 public class ServletTest extends HttpServlet {
 
@@ -136,8 +129,7 @@ public class ServletTest extends HttpServlet {
             .logMsg("Narrow CORBA object to interface HelloRMIIIOPObjectIntf");
         System.out
             .println("Narrow CORBA object to interface HelloRMIIIOPObjectIntf");
-        rmiiiopRef = (HelloRMIIIOPObjectIntf) PortableRemoteObject.narrow(obj,
-            HelloRMIIIOPObjectIntf.class);
+        rmiiiopRef = (HelloRMIIIOPObjectIntf) obj;
         TestUtil
             .logMsg("Call hello method on interface HelloRMIIIOPObjectIntf");
         System.out

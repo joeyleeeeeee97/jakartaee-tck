@@ -21,13 +21,8 @@
 package com.sun.ts.tests.ejb30.common.migration.threetwo;
 
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
-import com.sun.ts.tests.ejb30.common.migration.threetwo.ThreeTestBeanBase;
-import com.sun.ts.tests.ejb30.common.migration.threetwo.ThreeTestIF;
-import com.sun.ts.tests.ejb30.common.migration.threetwo.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.migration.threetwo.TwoRemoteHome;
 import jakarta.ejb.SessionContext;
 import javax.naming.NamingException;
-import javax.rmi.PortableRemoteObject;
 
 //@Stateless(name="ThreeTestBean")
 //@Remote(ThreeTestIF.class)
@@ -58,8 +53,7 @@ public class DescriptorThreeTestBean extends ThreeTestBeanBase
     if (twoRemoteHome == null) {
       try {
         Object obj = ServiceLocator.lookup(TWO_REMOTE_HOME_NAME);
-        twoRemoteHome = (TwoRemoteHome) PortableRemoteObject.narrow(obj,
-            TwoRemoteHome.class);
+        twoRemoteHome = (TwoRemoteHome) obj;
       } catch (NamingException e) {
         throw new IllegalStateException(e);
       }
@@ -71,8 +65,7 @@ public class DescriptorThreeTestBean extends ThreeTestBeanBase
     if (twoLocalHome == null) {
       try {
         Object obj = ServiceLocator.lookup(TWO_LOCAL_HOME_NAME);
-        twoLocalHome = (TwoLocalHome) PortableRemoteObject.narrow(obj,
-            TwoLocalHome.class);
+        twoLocalHome = (TwoLocalHome) obj;
       } catch (NamingException e) {
         throw new IllegalStateException(e);
       }

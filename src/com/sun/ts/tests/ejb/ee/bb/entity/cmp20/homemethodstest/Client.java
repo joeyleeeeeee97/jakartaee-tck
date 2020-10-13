@@ -21,15 +21,9 @@
 package com.sun.ts.tests.ejb.ee.bb.entity.cmp20.homemethodstest;
 
 import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
 import com.sun.ts.lib.harness.*;
 
-import java.io.*;
 import java.util.*;
-import jakarta.ejb.*;
-import jakarta.transaction.*;
-import javax.rmi.PortableRemoteObject;
-import java.rmi.*;
 
 import com.sun.javatest.Status;
 
@@ -340,8 +334,7 @@ public class Client extends EETest {
         Iterator i1 = b1.iterator();
         while (i1.hasNext()) {
           Object o = i1.next();
-          TestBean bRef = (TestBean) PortableRemoteObject.narrow(o,
-              TestBean.class);
+          TestBean bRef = (TestBean) o;
           if (bRef.getCardBalance() < minimumBal) {
             Integer key = (Integer) bRef.getPrimaryKey();
             beanHome.addCardFee(key, fee);
@@ -417,8 +410,7 @@ public class Client extends EETest {
         Iterator i1 = c1.iterator();
         while (i1.hasNext()) {
           Object o = i1.next();
-          TestBean bRef = (TestBean) PortableRemoteObject.narrow(o,
-              TestBean.class);
+          TestBean bRef = (TestBean) o;
           for (int l = 0; l < c1.size(); l++)
             bRef.remove();
         }
